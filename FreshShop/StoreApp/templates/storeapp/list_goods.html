@@ -1,0 +1,57 @@
+{% extends "storeapp/base.html" %}
+
+{% block title %}
+   商品列表页
+{% endblock %}
+
+{% block label %}
+    <a class="btn btn-warning" href="/storeapp/add_goods/">添加商品</a>
+{% endblock %}
+
+{% block content %}
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <td>商品名称</td>
+                <td>商品价格</td>
+                <td>商品数量</td>
+                <td>出厂日期</td>
+                <td>保质期</td>
+                <td>操作</td>
+            </tr>
+        </thead>
+        <tbody>
+            {%  for goods in page %}
+             <tr>
+                <td>{{ goods.goods_name }}</td>
+                <td>
+                    <input type="text" value="{{ goods.goods_price }}">
+                </td>
+                <td>{{ goods.goods_number }}</td>
+                <td>{{ goods.goods_date }}</td>
+                <td>{{ goods.goods_safeDate }}</td>
+                <td>
+                    <a class="btn btn-danger" href="#">
+                        下架
+                    </a>
+                    <a class="btn btn-primary" href="#">
+                        销毁
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="dataTables_paginate paging_simple_numbers">
+        <ul class="pagination">
+            {% for p in page_range %}
+            <li class="paginate_button page-item ">
+                <a class="page-link" href="/storeapp/list_goods/?keywords={{ keywords }}&page={{ p }}">{{ p }}</a>
+{#                <a class="page-link" href="?keywords={{ keywords }}&page={{ p }}">{{ p }}</a>#}
+            </li>
+            {% endfor %}
+
+        </ul>
+
+    </div>
+{% endblock %}

@@ -14,7 +14,7 @@ class Seller(models.Model):
 #店铺类型类
 class StoreType(models.Model):
     store_type = models.CharField(max_length=32,verbose_name="店铺类型名称")
-    type_descripton = models.TextField(verbose_name="类型名称")
+    type_descripton = models.TextField(verbose_name="类型描述")
 
 #店铺类
 class Store(models.Model):
@@ -25,7 +25,7 @@ class Store(models.Model):
     store_phone = models.CharField(max_length=32,verbose_name="店铺电话")
     store_money = models.FloatField(verbose_name="店铺注册资金")
     user_id = models.IntegerField(verbose_name="店铺主人") #卖家id （店铺和卖家是一对一）
-    type = models.ManyToManyField(to=StoreType,verbose_name="店铺类型多对多")
+    type = models.ManyToManyField(to=StoreType,verbose_name="店铺和类型多对多")
 
 #商品类
 class Goods(models.Model):
@@ -36,7 +36,7 @@ class Goods(models.Model):
     goods_description = models.TextField(verbose_name="商品描述")
     goods_date = models.DateField(verbose_name="出厂日期")
     goods_safeDate = models.IntegerField(verbose_name="保质期")
-    store_id = models.ManyToManyField(to=Store,verbose_name="商品店铺多对多")
+    store_id = models.ManyToManyField(to=Store,verbose_name="商品店铺多对多") #多对多
 
 #商品图片
 class GoodsImg(models.Model):

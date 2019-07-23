@@ -1,0 +1,50 @@
+{% extends "storeapp/base.html" %}
+
+{% block title %}
+    店铺注册
+{% endblock %}
+
+{% block content %}
+    <form class="form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <input type="text" class="form-control form-control-user" placeholder="店铺名称" name="store_name">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control form-control-user" placeholder="店铺地址" name="store_address">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control form-control-user" placeholder="店铺描述" name="store_descripton">
+        </div>
+        <div class="form-group">
+            <input type="file" class="form-control form-control-user" placeholder="店铺logo" name="store_logo">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control form-control-user" placeholder="店铺电话" name="store_phone">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control form-control-user" placeholder="店铺注册资金" name="store_money">
+        </div>
+        <div class="form-group">
+{#            <input type="text" class="form-control form-control-user" placeholder="店铺类型" name="type">#}
+            <select name="type" class="form-control form-control-user" multiple="multiple">
+                {% for t in type_list %}
+                    <option value="{{ t.id }}">{{ t.store_type }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary btn-block" value="注册">
+        </div>
+
+    </form>
+{% endblock %}
+
+{% block style %}
+    <!-- Page level plugins -->
+  <script src="/static/storeapp/vendor/chart.js/Chart.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="/static/storeapp/js/demo/chart-area-demo.js"></script>
+  <script src="/static/storeapp/js/demo/chart-pie-demo.js"></script>
+{% endblock %}

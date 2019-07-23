@@ -7,4 +7,10 @@ urlpatterns = [
     path('index/',index),
     re_path('^$',index),
     path('base/',base),
+    path('rs/',register_store),
+    path('add_goods/',add_goods),
+    path('list_goods/',list_goods),
+
+
+
 ]
