@@ -11,6 +11,7 @@
 
   <title>小段管理平台</title>
 
+
   <!-- Custom fonts for this template-->
   <link href="/static/storeapp/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -33,7 +34,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">小段管理平台</div>
+        <div class="sidebar-brand-text mx-3">{{ request.COOKIES.username }}管理平台</div>
       </a>
 
       <!-- Divider -->
@@ -41,24 +42,12 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-          {% if is_store %}
-        <a class="nav-link" href="index.html">
+          {% if request.COOKIES.has_store %}
+        <a class="nav-link" href="/storeapp/index/">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>店铺管理</span>
         </a>
-              {% else %}
-          <a class="nav-link" href="index.html">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>没有店铺，注册一个</span>
-          </a>
-          {% endif %}
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
+              <div class="sidebar-heading">
         销售管理
       </div>
 
@@ -73,10 +62,41 @@
             <h6 class="collapse-header">商品管理:</h6>
             <a class="collapse-item" href="/storeapp/add_goods/">添加商品</a>
             <a class="collapse-item" href="/storeapp/list_goods/">商品列表</a>
-              <a class="collapse-item" href="cards.html">商品详情</a>
+
           </div>
         </div>
       </li>
+              {% else %}
+          <a class="nav-link" href="/storeapp/rs/">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>没有店铺，注册一个 {{ request.COOKIES.has_store }}</span>
+          </a>
+          {% endif %}
+      </li>
+
+      <!-- Divider -->
+{#      <hr class="sidebar-divider">#}
+{##}
+{#      <!-- Heading -->#}
+{#      <div class="sidebar-heading">#}
+{#        销售管理#}
+{#      </div>#}
+{##}
+{#      <!-- Nav Item - Pages Collapse Menu -->#}
+{#      <li class="nav-item">#}
+{#        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">#}
+{#          <i class="fas fa-fw fa-cog"></i>#}
+{#          <span>商品信息</span>#}
+{#        </a>#}
+{#        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">#}
+{#          <div class="bg-white py-2 collapse-inner rounded">#}
+{#            <h6 class="collapse-header">商品管理:</h6>#}
+{#            <a class="collapse-item" href="/storeapp/add_goods/">添加商品</a>#}
+{#            <a class="collapse-item" href="/storeapp/list_goods/">商品列表</a>#}
+{#             #}
+{#          </div>#}
+{#        </div>#}
+{#      </li>#}
 
       <!-- Nav Item - Utilities Collapse Menu -->
 {#      <li class="nav-item">#}

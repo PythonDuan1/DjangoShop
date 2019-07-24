@@ -6,6 +6,20 @@ from django.shortcuts import HttpResponseRedirect
 
 from StoreApp.models import *
 
+#校验登录页面传过来的的cookie和session是否相符，相符的话登录首页
+def loginValid(fun):
+
+    #判断用户是否用cookie登录，这段代码就是为了判断登录后是谁登录的！！
+    def inner(request,*args,**kwargs):
+        c_user = request.COOKIES.get("username")
+        s_user = request.session.get("username")
+        if c_user and s_user and c_user == s_user:
+            user = Seller.objects.filter(username = c_user).first()
+            if user:
+                return fun(request,*args,**kwargs)
+        return HttpResponseRedirect("/storeapp/login/")
+    return inner
+
 #密码加密
 def set_password(password):
     md5 = hashlib.md5()
@@ -40,43 +54,29 @@ def login(request):
                 web_password = set_password(password)
                 cookies = request.COOKIES.get("login_form")
                 if user.password == web_password and cookies == "login_page":
-                    reponse = HttpResponseRedirect("/storeapp/index/")
-                    reponse.set_cookie("username",username)
-                    reponse.set_cookie("user_id", user.id)
+                    response = HttpResponseRedirect("/storeapp/index/")
+                    response.set_cookie("username",username)
+                    response.set_cookie("user_id", user.id)
                     request.session["username"] = username
-                    return reponse
+                    #检验用户是否有店铺
+                    store = Store.objects.filter(user_id=user.id).first()
+                    if store:
+                        response.set_cookie("has_store",store.id)
+                    else:
+                        response.set_cookie("has_store","")
+                    return response
     return response
-
-#校验登录页面传过来的的cookie和session是否相符，相符的话登录首页
-def loginValid(fun):
-    def inner(request,*args,**kwargs):
-        c_user = request.COOKIES.get("username")
-        s_user = request.session.get("username")
-        if c_user and s_user and c_user == s_user:
-            user = Seller.objects.filter(username = c_user).first()
-            if user:
-                return fun(request,*args,**kwargs)
-        return HttpResponseRedirect("/storeapp/login/")
-    return inner
 
 @loginValid
 def index(request):
-    user_id = request.COOKIES.get("user_id")
-    if user_id:
-        user_id = int(user_id)
-    else:
-        user_id = 0
-    store = Store.objects.filter(user_id= user_id).first()
-    if store:
-        is_store = 1
-    else:
-        is_store = 0
-    return render(request,"storeapp/index.html",{"is_store":is_store}) #法一
+    # user_id = request.COOKIES.get("user_id")
+    return render(request,"storeapp/index.html") #法一
     # cookie_user = request.COOKIES.get("username") #法二
     # return render(request,"storeapp/index.html",)
 
 
 #添加店铺
+@loginValid
 def register_store(request):
     type_list = StoreType.objects.all()
     if request.method=="POST":
@@ -106,13 +106,15 @@ def register_store(request):
         for i in type_lists:
             store_type = StoreType.objects.get(id = i)
             store.type.add(store_type)
-            print(store_type)
-
+            # print(store_type)
         store.save()
-
+        response = HttpResponseRedirect("/storeapp/index/")
+        response.set_cookie("has_store",store.id)
+        return response
     return render(request,"storeapp/register_store.html",locals())
 
 #添加商品
+@loginValid
 def add_goods(request):
     if request.method == "POST":
         goods_name = request.POST.get("goods_name")
@@ -142,15 +144,21 @@ def add_goods(request):
 
     return render(request,"storeapp/add_goods.html")
 
+@loginValid
 #商品列表页
 def list_goods(request):
 
     keywords = request.GET.get("keywords","") #查找关键字
     page_num = request.GET.get("page",1) #页码
+
+    #查询店铺
+    store_id = request.COOKIES.get("has_store")
+    store = Store.objects.get(id =int(store_id))
+
     if keywords: #如果关键字存在
-        goods_list = Goods.objects.filter(goods_name__contains=keywords) #完成模糊查询
+        goods_list = store.goods_set.filter(goods_name__contains=keywords) #完成模糊查询
     else: #如果关键字不存在，则查询所有
-        goods_list = Goods.objects.all()
+        goods_list = store.goods_set.all()
 
     #分页查询，每页3条数据
     paginator = Paginator(goods_list,3)
@@ -158,6 +166,40 @@ def list_goods(request):
     page_range = paginator.page_range #总数据条数 除以 3 得到一个page_range列表
     #返回分页数据
     return render(request,"storeapp/list_goods.html",{"page":page,"page_range":page_range,"keywords":keywords})
+
+@loginValid
+#商品详情页
+def goods(request,goods_id):
+    goods_data = Goods.objects.filter(id = goods_id).first() #如果获取不到id, first()方法不会报错！
+    return render(request,"storeapp/goods.html",locals())
+
+@loginValid
+#修改商品页
+def update_goods(request,goods_id):
+    goods_data = Goods.objects.filter(id=goods_id).first()
+    if request.method == "POST":
+        goods_name = request.POST.get("goods_name")
+        goods_price = request.POST.get("goods_price")
+        goods_image = request.FILES.get("goods_image")
+        goods_number = request.POST.get("goods_number")
+        goods_description = request.POST.get("goods_description")
+        goods_date = request.POST.get("goods_date")
+        goods_safeDate = request.POST.get("goods_safeDate")
+
+        # 开始修改数据
+        goods = Goods.objects.get(id=int(goods_id))
+        goods.goods_name = goods_name
+        goods.goods_price = goods_price
+        goods.goods_number = goods_number
+        goods.goods_description = goods_description
+        goods.goods_date = goods_date
+        goods.goods_safeDate = goods_safeDate
+        if goods_image:
+            goods.goods_image = goods_image
+        goods.save()
+        return HttpResponseRedirect("/storeapp/goods/%s"%goods_id)
+
+    return render(request,"storeapp/update_goods.html",locals())
 
 def base(request):
     return render(request,"storeapp/base.html")
