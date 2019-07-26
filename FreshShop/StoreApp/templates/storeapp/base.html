@@ -61,18 +61,27 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">商品管理:</h6>
             <a class="collapse-item" href="/storeapp/add_goods/">添加商品</a>
-            <a class="collapse-item" href="/storeapp/list_goods/">商品列表</a>
+            <a class="collapse-item" href="/storeapp/list_goods/up/">在售商品列表</a>
+              <a class="collapse-item" href="/storeapp/list_goods/down/">下架商品列表</a>
 
           </div>
         </div>
       </li>
+              <li class="nav-item">
+                  <a class="nav-link collapsed" href="/storeapp/goods_type_list/">
+                      <i class="fas fa-fw fa-cog"></i>
+                          <span>商品类型管理</span>
+                  </a>
+              </li>
               {% else %}
+         <li class="nav-item">
           <a class="nav-link" href="/storeapp/rs/">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>没有店铺，注册一个 {{ request.COOKIES.has_store }}</span>
           </a>
           {% endif %}
       </li>
+
 
       <!-- Divider -->
 {#      <hr class="sidebar-divider">#}
@@ -341,7 +350,7 @@
                     登录日志
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                <a class="dropdown-item" href="/storeapp/logout/">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   退出
                 </a>

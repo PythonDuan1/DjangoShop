@@ -24,8 +24,18 @@ class Store(models.Model):
     store_logo = models.ImageField(upload_to="store/images",verbose_name="店铺logo")
     store_phone = models.CharField(max_length=32,verbose_name="店铺电话")
     store_money = models.FloatField(verbose_name="店铺注册资金")
+
     user_id = models.IntegerField(verbose_name="店铺主人") #卖家id （店铺和卖家是一对一）
+
     type = models.ManyToManyField(to=StoreType,verbose_name="店铺和类型多对多")
+
+
+#商品类型类
+class GoodsType(models.Model):
+    name = models.CharField(max_length=32,verbose_name="商品类型名称")
+    descripton = models.TextField(max_length=32,verbose_name="商品类型描述")
+    picture = models.ImageField(upload_to="buyerapp/images")
+
 
 #商品类
 class Goods(models.Model):
@@ -34,9 +44,15 @@ class Goods(models.Model):
     goods_image = models.ImageField(upload_to="store/images",verbose_name="商品图片")
     goods_number = models.IntegerField(verbose_name="商品数量库存")
     goods_description = models.TextField(verbose_name="商品描述")
-    goods_date = models.DateField(verbose_name="出厂日期")
+    goods_date = models.DateField(verbose_name="出厂日期",blank=True,null=True)
     goods_safeDate = models.IntegerField(verbose_name="保质期")
-    store_id = models.ManyToManyField(to=Store,verbose_name="商品店铺多对多") #多对多
+    store_id = models.ManyToManyField(to=Store,verbose_name="商品 店铺 多对多") #多对多
+
+    goods_under = models.IntegerField(verbose_name="商品状态",default=1) #0 下架 ， 1待售
+
+    goods_type = models.ForeignKey(to=GoodsType,on_delete=models.CASCADE, verbose_name="商品类型")
+    #商品类型和商品是一对多关系，多表中设置外键。
+
 
 #商品图片
 class GoodsImg(models.Model):

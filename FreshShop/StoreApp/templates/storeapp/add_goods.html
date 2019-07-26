@@ -31,6 +31,16 @@
             <input type="text" class="form-control form-control-user" placeholder="保质期(月)" name="goods_safeDate">
         </div>
 
+         <div class="form-group">
+
+            <select  class="form-control form-control-user" name="goods_type">
+                {% for goods_type in goods_type_list %}
+                    <option value="{{ goods_type.id }}">{{ goods_type.name}}</option>
+{#                    value="{{ goods_type.id }}是传给后台的数据,后台通过name="goods_type"，可以直接获取到goods_type.id 。{{ goods_type.name}}是前端看到的数据展示#}
+                {% endfor %}
+            </select>
+        </div>
+
         <div class="form-group">
             <input  class="form-control form-control-user" type="hidden" name="goods_store" value="{{ request.COOKIES.has_store }}">
         </div>

@@ -33,12 +33,14 @@
                 <td>{{ goods.goods_date }}</td>
                 <td>{{ goods.goods_safeDate }}</td>
                 <td>
-                    <a class="btn btn-danger" href="#">
-                        下架
-                    </a>
-                    <a class="btn btn-primary" href="#">
-                        销毁
-                    </a>
+                    {% ifequal state "up" %}
+                    <a class="btn btn-danger" href="/storeapp/set_goods/down/?id={{ goods.id }}">下架</a>
+                    {% else %}
+                        <a class="btn btn-danger" href="/storeapp/set_goods/up/?id={{ goods.id }}">上架</a>
+                    {% endifequal %}
+                    <a class="btn btn-primary" href="/storeapp/set_goods/delete/?id={{ goods.id }}">销毁</a>
+
+
                 </td>
             </tr>
             {% endfor %}
@@ -48,7 +50,7 @@
         <ul class="pagination">
             {% for p in page_range %}
             <li class="paginate_button page-item ">
-                <a class="page-link" href="/storeapp/list_goods/?keywords={{ keywords }}&page={{ p }}">{{ p }}</a>
+                <a class="page-link" href="/storeapp/list_goods/{{ state }}/?keywords={{ keywords }}&page={{ p }}">{{ p }}</a>
 {#                <a class="page-link" href="?keywords={{ keywords }}&page={{ p }}">{{ p }}</a>#}
             </li>
             {% endfor %}

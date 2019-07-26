@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'StoreApp',
     'ckeditor',
     'ckeditor_uploader',
+    'BuyerApp',
 
 ]
 
