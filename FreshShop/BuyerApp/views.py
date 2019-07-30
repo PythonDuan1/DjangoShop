@@ -1,3 +1,5 @@
+import time
+
 from django.shortcuts import render
 from django.shortcuts import HttpResponse
 from django.shortcuts import HttpResponseRedirect
@@ -25,6 +27,7 @@ def loginValid(fun):
 def base(request):
     return render(request,"buyerapp/base.html")
 # Create your views here.
+
 
 def register(request):
     if request.method == "POST":
@@ -77,6 +80,7 @@ def index(request):
     return render(request,"buyerapp/index.html",locals())
 
 #商品列表页
+@loginValid
 def goods_list(request):
     goodsList = []
     type_id = request.GET.get("type_id")
@@ -86,6 +90,86 @@ def goods_list(request):
         #获取所有上架的商品
         goodsList = goods_type.goods_set.filter(goods_under=1)
     return render(request,"buyerapp/goods_list.html",locals())
+
+
+#前台商品详情页
+@loginValid
+def goods_detail(request):
+    goods_id = request.GET.get("id")
+    if goods_id:
+        goods = Goods.objects.filter(id = goods_id).first()
+        if goods:
+            return render(request,"buyerapp/goods_detail.html",locals())
+    return HttpResponse("没有您指定的商品")
+
+#统计购物车内商品数量
+def count_cart(request):
+    cart_goods = 0
+    goods_id = request.GET.get("id")
+
+    goods = Goods.objects.filter(id=goods_id).first()
+    if goods:
+        cart_goods += 1
+    return  #这里应该是用到局部提交
+
+
+
+#前台商品购物车页
+@loginValid
+def goods_cart(request):
+    goods_id = request.GET.get("id")
+    goods = Goods.objects.filter(id = goods_id).first()
+    return render(request,"buyerapp/goods_cart.html",locals())
+
+#设置订单编号
+def setOrder_id(user_id,goods_id,store_id):
+    strtime = time.strftime("%Y%m%d%H%M%S",time.localtime())
+    return strtime+user_id+goods_id+store_id
+
+#商品提交订单页
+@loginValid
+def place_order(request):
+    if request.method == "POST":
+        #post数据
+        count = int(request.POST.get("count"))
+        goods_id = request.POST.get("goods_id")
+
+        #cookie数据
+        user_id = request.COOKIES.get("user_id")
+
+        #数据库数据
+        goods = Goods.objects.get(id = goods_id)
+        store_id = goods.store_id.id #获取商品对应的店铺的id（店铺商品现在是一对多关系）
+        price = goods.goods_price
+
+        #保存订单表
+        order = Order()
+        order.order_id = setOrder_id(str(user_id),str(goods_id),str(store_id))
+        order.goods_count = count
+        order.order_user = Buyer.objects.get(id = user_id)
+        order.order_price = count * price
+        order.order_status = 1 #补充生成订单时，订单状态是未支付（1）
+        order.save()
+
+        #保存订单详情表
+        order_detail = OrderDetail()
+        order_detail.order_id = order
+        order_detail.goods_id= goods_id
+        order_detail.goods_name=goods.goods_name
+        order_detail.goods_price = goods.goods_price
+        order_detail.goods_number = count
+        order_detail.goods_total = count*goods.goods_price
+        order_detail.goods_store = store_id
+        order_detail.goods_image = goods.goods_image
+
+        order_detail.save()
+
+        detail = [order_detail]
+
+        return render(request,"buyerapp/place_order.html",locals())
+    else:
+        return HttpResponse("非法请求")
+
 
 
 #退出登录
@@ -129,6 +213,10 @@ def pay_order(request):
         return_url="http://127.0.0.1:8000/buyerapp/pay_result/",#支付完成要跳转的本地路由
         notify_url="http://127.0.0.1:8000/buyerapp/pay_result/" #支付完成要跳转的本地异步路由
     )
+    #支付完成后，订单状态变为 2
+    order = Order.objects.get(order_id = order_id)
+    order.order_status = 2
+    order.save()
 
     return HttpResponseRedirect("https://openapi.alipaydev.com/gateway.do?" + order_string) #跳转支付路由
 
@@ -182,6 +270,13 @@ def pay_result(request):
 
     """
     return render(request,"buyerapp/pay_result.html",locals())
+
+
+#购物车和提交订单base页
+def base_1(request):
+    return render(request,"buyerapp/base-1.html")
+
+
 
 
 

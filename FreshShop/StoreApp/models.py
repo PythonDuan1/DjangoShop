@@ -46,7 +46,8 @@ class Goods(models.Model):
     goods_description = models.TextField(verbose_name="商品描述")
     goods_date = models.DateField(verbose_name="出厂日期",blank=True,null=True)
     goods_safeDate = models.IntegerField(verbose_name="保质期")
-    store_id = models.ManyToManyField(to=Store,verbose_name="商品 店铺 多对多") #多对多
+
+    store_id = models.ForeignKey(to=Store,on_delete=models.CASCADE,verbose_name="商品店铺 ") #店铺和商品是 一对多关系
 
     goods_under = models.IntegerField(verbose_name="商品状态",default=1) #0 下架 ， 1待售
 

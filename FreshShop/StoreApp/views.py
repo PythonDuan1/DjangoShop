@@ -5,6 +5,7 @@ from django.core.paginator import Paginator  #导入分页模块
 from django.shortcuts import HttpResponseRedirect
 
 from StoreApp.models import *
+from BuyerApp.models import *
 
 #校验登录页面传过来的的cookie和session是否相符，相符的话登录首页
 def loginValid(fun):
@@ -139,11 +140,8 @@ def add_goods(request):
 
         goods.goods_type = GoodsType.objects.get(id = int(goods_type))
 
-        goods.save()
+        goods.store_id = Store.objects.get(id = int(goods_store)) #修改了
 
-        goods.store_id.add(
-            Store.objects.get(id = int(goods_store))
-        )
         goods.save()
         return HttpResponseRedirect("/storeapp/list_goods/up/")
 
@@ -252,6 +250,51 @@ def set_goods(request,state):
             goods.goods_under = state_num #修改状态
             goods.save()
     return HttpResponseRedirect(referer)
+
+#后台订单列表页（待处理订单）
+@loginValid
+def order_list(request):
+    #要知道是哪家店铺的订单列表，所以需要从订单详情页中去取
+    store_id = request.COOKIES.get("has_store")
+    order_list = OrderDetail.objects.filter(order_id__order_status=2,goods_store=store_id) #订单详情
+    return render(request,"storeapp/order_list.html",locals())
+
+#拒绝发货（改变订单状态）
+def delete_order(request):
+    order_id = request.GET.get("order_id") #获取订单页订单编号
+    if order_id:
+        order = Order.objects.get(order_id=order_id)
+        order.order_status = 0
+        order.save()
+        store_id = request.COOKIES.get("has_store")
+        order_list = OrderDetail.objects.filter(order_id__order_status=2, goods_store=store_id)  # 订单详情
+        return render(request,"storeapp/order_list.html",locals())
+    return HttpResponseRedirect("/storeapp/order_list/")
+
+#确认发货（改变订单状态）
+def affirm_order(request):
+    order_id = request.GET.get("order_id")  # 获取订单页订单编号
+    if order_id:
+        order = Order.objects.get(order_id=order_id)
+        order.order_status = 3
+        order.save()
+        store_id = request.COOKIES.get("has_store")
+        order_list = OrderDetail.objects.filter(order_id__order_status=2, goods_store=store_id)  # 订单详情
+        return render(request, "storeapp/order_list.html", locals())
+    return HttpResponseRedirect("/storeapp/order_list/")
+
+#后台已完成订单列表页
+def completed_order(request):
+    store_id = request.COOKIES.get("has_store")
+    order_list = OrderDetail.objects.filter(goods_store=store_id).exclude(order_id__order_status=2,goods_store=store_id)  # 订单详情
+    return render(request, "storeapp/completed_order.html", locals())
+
+
+
+
+
+
+
 
 
 def base(request):

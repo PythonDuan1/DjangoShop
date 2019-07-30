@@ -19,8 +19,8 @@ from BuyerApp.views import index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('storeapp/',include("StoreApp.urls")),
-    path('buyerapp/',include("BuyerApp.url")),
+    path('storeapp/',include("StoreApp.urls")), #后台
+    path('buyerapp/',include("BuyerApp.url")), #前台
     path('ckeditor/',include('ckeditor_uploader.urls')),
 ]
 

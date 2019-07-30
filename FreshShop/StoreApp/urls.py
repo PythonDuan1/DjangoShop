@@ -16,6 +16,11 @@ urlpatterns = [
     path('goods_type_list/',goods_type_list),#商品类型列表页
     path('delete_goods_type/',delete_goods_type),#删除商品类型
 
+    path('order_list/',order_list),#订单列表页
+    path('delete_order/',delete_order),#删除订单（卖家拒绝发货）
+    path('affirm_order/',affirm_order), #确认发货
+    path('completed_order/',completed_order),#已完成订单
+
     re_path(r'list_goods/(?P<state>\w+)/',list_goods),
     re_path(r'^goods/(?P<goods_id>\d+)',goods),
     re_path(r'update_goods/(?P<goods_id>\d+)',update_goods),
