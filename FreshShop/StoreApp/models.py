@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Manager
 
 #卖家类
 class Seller(models.Model):
@@ -10,6 +11,7 @@ class Seller(models.Model):
     picture = models.ImageField(upload_to="store/images",verbose_name="用户头像",null=True,blank=True)
     address = models.CharField(max_length=32,verbose_name="地址",null=True,blank=True)
     card_id = models.CharField(max_length=32,verbose_name="身份证",null=True,blank=True)
+
 
 #店铺类型类
 class StoreType(models.Model):
@@ -29,6 +31,16 @@ class Store(models.Model):
 
     type = models.ManyToManyField(to=StoreType,verbose_name="店铺和类型多对多")
 
+import datetime
+class GoodsTypeManage(Manager):
+    def addType(self,name,picture = "/buyerapp/images/adv01.jpg"):
+        goods_type = GoodsType()
+        goods_type.name = name
+        now = datetime.datetime.now().strftime("%Y-%m-%d")
+        goods_type.descripton = "%s_%s"%(now,name)
+        goods_type.picture = picture
+        goods_type.save()
+        return goods_type
 
 #商品类型类
 class GoodsType(models.Model):
@@ -36,6 +48,13 @@ class GoodsType(models.Model):
     descripton = models.TextField(max_length=32,verbose_name="商品类型描述")
     picture = models.ImageField(upload_to="buyerapp/images")
 
+    objects = GoodsTypeManage()
+
+
+class GoodsManage(Manager):
+    def up_goods(self):
+        #全部上架的商品
+        return Goods.objects.filter(goods_under=1)
 
 #商品类
 class Goods(models.Model):
@@ -53,6 +72,11 @@ class Goods(models.Model):
 
     goods_type = models.ForeignKey(to=GoodsType,on_delete=models.CASCADE, verbose_name="商品类型")
     #商品类型和商品是一对多关系，多表中设置外键。
+
+    objects = GoodsManage()
+
+    def __str__(self):
+        return self.goods_name
 
 
 #商品图片

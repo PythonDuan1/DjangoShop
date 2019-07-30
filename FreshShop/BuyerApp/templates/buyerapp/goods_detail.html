@@ -99,5 +99,34 @@
             var total_price = price * value;
             $("#total").text(total_price) //text()，val()等 里面有内容就是赋值，不写就是获取里面的值！
         }
+
+        $("#add_cart").click(
+            function () {
+                var count = $("#count").val();
+                var goods_id = $("#goods_id").val();
+                var sendData = {
+                    "count":count,
+                    "goods_id":goods_id,
+                    "csrfmiddlewaretoken":"{{ csrf_token }}"
+                };
+                //console.log(sendData);
+                var url = "/buyerapp/add_cart/";
+                $.ajax(
+                    {
+                        url:url,
+                        type:"post",
+                        data:sendData,
+                        success:function (data) {
+                            alert(data.data);
+                            console.log(data)
+                        },
+                        error:function (error) {
+                            console.log(error)
+                        }
+
+                    }
+                )
+            }
+        )
     </script>
 {% endblock %}

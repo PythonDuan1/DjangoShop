@@ -2,7 +2,9 @@ import time
 
 from django.shortcuts import render
 from django.shortcuts import HttpResponse
+from django.http import JsonResponse
 from django.shortcuts import HttpResponseRedirect
+from django.db.models import Sum
 
 from BuyerApp.models import *
 from StoreApp.views import set_password
@@ -102,29 +104,95 @@ def goods_detail(request):
             return render(request,"buyerapp/goods_detail.html",locals())
     return HttpResponse("没有您指定的商品")
 
-#统计购物车内商品数量
-def count_cart(request):
-    cart_goods = 0
-    goods_id = request.GET.get("id")
-
-    goods = Goods.objects.filter(id=goods_id).first()
-    if goods:
-        cart_goods += 1
-    return  #这里应该是用到局部提交
 
 
-
-#前台商品购物车页
+#前台商品购物车页（从数据库中取数据进行展示）
 @loginValid
 def goods_cart(request):
-    goods_id = request.GET.get("id")
-    goods = Goods.objects.filter(id = goods_id).first()
+    user_id = request.COOKIES.get("user_id")
+    goods_list = Cart.objects.filter(user_id = user_id) #当前用户购物车内的每条商品信息（数据库中取数据）
+    if request.method == "POST":
+        post_data = request.POST
+        cart_data = [] #收集前端传过来的商品
+        for k,v in post_data.items():
+            if k.startswith("goods_"):
+                cart_data.append(Cart.objects.get(id = int(v))) #加的是购物车中一个个的商品实例
+        # print(cart_data)
+        # print(len(cart_data))
+        # print(sum([int(i.goods_total)for i in cart_data]))
+        goods_count = len(cart_data) #购物车提交过来商品条数
+        goods_tatal = sum([int(i.goods_total)for i in cart_data]) #订单总价
+
+        """
+         #修改使用聚类查询返回指定商品的总价
+        #1、查询到所有的商品
+        cart_data = []  # 收集前端传过来的商品的id
+        for k, v in post_data.items():
+            if k.startswith("goods_"):
+                cart_data.append(int(v)) # v 是购物车的id
+        #2、使用 in 方法 进行范围的划定，然后使用Sum方法进行计算
+        cart_goods = Cart.objects.filter(id__in=cart_data).aggregate(Sum("goods_total")) #获取到总价
+        print(cart_goods)
+        """
+        #保存订单
+        order = Order()
+        order.order_id = setOrder_id(user_id,goods_count,"2")
+        order.goods_count = goods_count #总共买了几种商品
+        order.order_user = Buyer.objects.get(id = user_id)
+        order.order_price = goods_tatal
+        order.order_status = 1
+        order.save()
+
+        #保存订单详情
+        for detail in cart_data:
+            order_detail = OrderDetail()
+            order_detail.order_id = order
+            order_detail.goods_id = detail.goods_id
+            order_detail.goods_name = detail.goods_name
+            order_detail.goods_price = detail.goods_price
+            order_detail.goods_number = detail.goods_number #同一个商品买了几件
+            order_detail.goods_total = detail.goods_total
+            order_detail.goods_store = detail.goods_store
+            order_detail.goods_image = detail.goods_picture
+            order_detail.save()
+        url = "/buyerapp/place_order/?order_id=%s"%order.id
+        return HttpResponseRedirect(url) #重定向到提交订单页面
+
     return render(request,"buyerapp/goods_cart.html",locals())
+
+#向购物车添加商品（保存到数据库）
+@loginValid
+def add_cart(request):
+    result = {"state":"error","data":""}
+    if request.method == "POST":
+        count = int(request.POST.get("count"))
+        goods_id = request.POST.get("goods_id")
+
+        goods = Goods.objects.get(id = int(goods_id)) #获取商品详情页中的具体商品，然后加入购物车
+
+        user_id = request.COOKIES.get("user_id")
+
+        cart = Cart()
+        cart.goods_name = goods.goods_name
+        cart.goods_price = goods.goods_price #商品单价
+        cart.goods_total = goods.goods_price*count #商品总价
+        cart.goods_number = count #商品数量
+        cart.goods_picture = goods.goods_image
+        cart.goods_id = goods.id
+        cart.goods_store = goods.store_id.id #商品商店id
+        cart.user_id = user_id
+        cart.save()
+        result["state"]="success"
+        result["data"]="商品添加购物车成功"
+    else:
+        result["data"]="请求错误"
+    return JsonResponse(result)
+
 
 #设置订单编号
 def setOrder_id(user_id,goods_id,store_id):
     strtime = time.strftime("%Y%m%d%H%M%S",time.localtime())
-    return strtime+user_id+goods_id+store_id
+    return strtime+str(user_id)+str(goods_id)+str(store_id)
 
 #商品提交订单页
 @loginValid
@@ -168,7 +236,13 @@ def place_order(request):
 
         return render(request,"buyerapp/place_order.html",locals())
     else:
-        return HttpResponse("非法请求")
+        order_id = request.GET.get("order_id")
+        if order_id:
+            order = Order.objects.get(id = order_id)
+            detail = order.orderdetail_set.all()
+            return render(request,"buyerapp/place_order.html",locals())
+        else:
+            return HttpResponseRedirect("非法请求")
 
 
 

@@ -8,8 +8,10 @@ urlpatterns = [
     path('logout/',logout),
     path('goods_list/',goods_list),#商品列表页
     path('goods_detail/',goods_detail), #商品详情页
-    path('goods_cart/',goods_cart), #商品购物车页
-    path('count_cart/',count_cart), #统计购物车内商品数量
+
+    path('cart/',goods_cart), #商品购物车页
+    path('add_cart/',add_cart), #向购物车添加商品
+
 
     path('place_order/',place_order), #商品提交订单页
 
