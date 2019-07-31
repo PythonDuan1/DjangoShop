@@ -17,11 +17,21 @@ from django.contrib import admin
 from django.urls import path,include,re_path
 from BuyerApp.views import index
 
+from rest_framework import routers
+from StoreApp.views import UserViewSet
+from StoreApp.views import TypeViewSet
+
+router = routers.DefaultRouter() #声明一个默认的路由注册器
+router.register(r'goods',UserViewSet) #注册写好的接口视图
+router.register(r'goodsType',TypeViewSet) #注册写好的接口视图
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('storeapp/',include("StoreApp.urls")), #后台
     path('buyerapp/',include("BuyerApp.url")), #前台
     path('ckeditor/',include('ckeditor_uploader.urls')),
+    re_path('^API',include(router.urls)), #restful 的根路由
+    re_path('^api-auth',include('rest_framework.urls')) #接口认证
 ]
 
 urlpatterns += [

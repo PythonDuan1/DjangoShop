@@ -27,3 +27,7 @@ urlpatterns = [
     re_path(r'set_goods/(?P<state>\w+)/',set_goods),
 
 ]
+
+urlpatterns += [
+    path('agl/',ajax_goods_list),
+]

@@ -290,13 +290,6 @@ def completed_order(request):
     return render(request, "storeapp/completed_order.html", locals())
 
 
-
-
-
-
-
-
-
 def base(request):
     return render(request,"storeapp/base.html")
 
@@ -307,4 +300,22 @@ def logout(request):
         response.delete_cookie(key)
     return response
 
+
 # Create your views here.
+from StoreApp.serializers import *
+from rest_framework import viewsets
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = Goods.objects.all()  #具体返回的数据
+    serializer_class = UserSerializer  #指定过滤的类
+
+class TypeViewSet(viewsets.ModelViewSet):
+    """
+       返回具体查询的内容
+    """
+    queryset = GoodsType.objects.all()
+    serializer_class = GoodsTypeSerializer
+
+
+def ajax_goods_list(request):
+    return render(request,"storeapp/ajax_list_goods.html")

@@ -1,0 +1,128 @@
+{% extends "storeapp/base.html" %}
+
+{% block title %}
+   商品列表页
+{% endblock %}
+
+{% block label %}
+    <a class="btn btn-warning" href="/storeapp/add_goods/">添加商品</a>
+{% endblock %}
+
+{% block content %}
+    {% verbatim myblock %}
+    <div id="goods">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <td>商品名称</td>
+                    <td>商品价格</td>
+                    <td>商品数量</td>
+                    <td>出厂日期</td>
+                    <td>保质期</td>
+                    <td>操作</td>
+                </tr>
+            </thead>
+
+            <tbody>
+                 <tr v-for="goods in goods_list">
+                    <td>
+                        <a href="/storeapp/goods/{{ goods.id }}">{{ goods.goods_name }}</a>
+                    </td>
+                    <td>
+                        <input type="text" v-bind:value=goods.goods_price >
+                    </td>
+                    <td>{{ goods.goods_number }}</td>
+                    <td>{{ goods.goods_date }}</td>
+                    <td>{{ goods.goods_safeDate }}</td>
+                    <td>
+                        <a class="btn btn-danger" href="/storeapp/set_goods/down/?id={{ goods.id }}">下架</a>
+                        <!---
+                        {% ifequal state "up" %}
+                        <a class="btn btn-danger" href="/storeapp/set_goods/down/?id={{ goods.id }}">下架</a>
+                        {% else %}
+                            <a class="btn btn-danger" href="/storeapp/set_goods/up/?id={{ goods.id }}">上架</a>
+                        {% endifequal %}
+                        <a class="btn btn-primary" href="/storeapp/set_goods/delete/?id={{ goods.id }}">销毁</a>
+                        -->
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+        <div class="dataTables_paginate paging_simple_numbers">
+            <ul class="pagination">
+                <li class="paginate_button page-item " v-for="p in page_range">
+                    <a class="page-link" href="#" v-on:click="get_page_data(p)">{{ p }}</a>
+                 <!--   <a class="page-link" href="?keywords={{ keywords }}&page={{ p }}">{{ p }}</a> -->
+                </li>
+            </ul>
+        </div>
+    </div>
+    {% endverbatim myblock%}
+{% endblock %}
+
+{% block style %}
+    <script src="/static/storeapp/js/vue.min.js"></script>
+    <script src="/static/storeapp/js/vue-resource.js"></script>
+    <script>
+        Vue.use(VueResource);
+        var vue = new Vue(
+            {
+                el:"#goods",
+                data:{
+                goods_list:[],
+                page_range:[]
+        },
+                created:function () {
+                    this.$http.get("/APIgoods/").then(
+                        function (data) {
+                            console.log(data.data);
+                            this.goods_list = data.data.results;
+                            page_number = Math.ceil(data.data.count/5);
+                            var page_range = [...new Array(page_number).keys()];
+                            this.page_range = page_range
+                        },
+                        function (error) {
+                            console.log(error);
+                        }
+                    )
+                },//初始化方法
+                methods:{
+                    get_page_data:function (page) {
+                        this.$http.get("/APIgoods/?page="+page).then(
+                            function (data) {
+                                console.log(data.data);
+                                this.goods_list = data.data.results;
+                                page_number = Math.ceil(data.data.count/5);
+                                var page_range = [...new Array(page_number).keys()];
+                                this.page_range = page_range
+                            },
+                            function (error) {
+                                console.log(error)
+                            }
+                        )
+                    }
+
+                } //可以被v-on绑定的方法
+            }
+        );
+
+        {#$.ajax(#}
+        {#    {#}
+        {#        url:"/APIgoods/",#}
+        {#        type:"get",#}
+        {#        data:"",#}
+        {#        success:function (data) {#}
+        {#            console.log(data)#}
+        {#        },#}
+        {#        errors:function (error) {#}
+        {#            console.log(error)#}
+        {#        }#}
+        {#    }#}
+        {#)#}
+    </script>
+{% endblock %}
+
+
+
