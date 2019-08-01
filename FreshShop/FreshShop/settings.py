@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'BuyerApp',
     'rest_framework',
+    'djcelery',
 
 ]
 
@@ -141,7 +142,46 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ],
     'DEFAULT_PAGINATION_CLASS':'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE':5
+    'PAGE_SIZE':5,  #以每5条数据为一页
+
+    'DEFAULT_RENDERER_CLASSES':(
+        'utils.rendererresponse.customrenderer',
+    ),
+
+    'DEFAULT_FILTER_BACKENDS':(
+        'django_filters.rest_framework.DjangoFilterBackend', #django-filter 自带的查询过滤器
+    )
 }
 
+#django 发送邮件
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend" #发送邮件采用smtp服务
+
+EMAIL_USE_TLS = False  #使用tls方式
+
+EMAIL_HOST = "smtp.163.com"
+EMAIL_PORT = 465
+EMAIL_HOST_USER = "ws13097652830@163.com"
+EMAIL_HOST_PASSWORD = "duan123"
+DEFAULT_FROM_EMAIL = "ws13097652830@163.com"
+
+#celery配置
+import djcelery #导入django-celery模块
+djcelery.setup_loader() #进行模块重载
+BROKER_URL = 'redis://127.0.0.1:6379/1'#任务容器地址，redis数据库地址
+CELERY_IMPORTS = ('CeleryTask.tasks') #具体的任务文件
+CELERY_TIMEZONE = 'Asia/shanghai'#celery时区
+CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler' #celery处理器
+
+#celery 的定时器
+from celery.schedules import crontab
+from celery.schedules import timedelta
+
+CELERY_SCHEDULE = { #定时器策略
+    #定时任务一： 每隔30s运行一次
+    u'测试定时器1':{
+        "task":"celeryTask.tasks.taskExample",
+        "schedule":timedelta(seconds=30),
+        "args":(),
+    },
+}
 

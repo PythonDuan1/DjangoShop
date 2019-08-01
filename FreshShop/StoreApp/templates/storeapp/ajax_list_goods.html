@@ -26,10 +26,10 @@
             <tbody>
                  <tr v-for="goods in goods_list">
                     <td>
-                        <a href="/storeapp/goods/{{ goods.id }}">{{ goods.goods_name }}</a>
+                        <a href="/storeapp/goods/{{ goods.id }}/">{{ goods.goods_name }}</a>
                     </td>
                     <td>
-                        <input type="text" v-bind:value=goods.goods_price >
+                        <input type="text" v-bind:value="goods.goods_price" >
                     </td>
                     <td>{{ goods.goods_number }}</td>
                     <td>{{ goods.goods_date }}</td>
@@ -66,21 +66,22 @@
     <script src="/static/storeapp/js/vue.min.js"></script>
     <script src="/static/storeapp/js/vue-resource.js"></script>
     <script>
-        Vue.use(VueResource);
+        Vue.use(VueResource); //使用vueresource对象
         var vue = new Vue(
             {
-                el:"#goods",
+                el:"#goods", //指定绑定的范围对象
                 data:{
                 goods_list:[],
                 page_range:[]
-        },
+        }, //具体绑定的数据对象
                 created:function () {
                     this.$http.get("/APIgoods/").then(
                         function (data) {
                             console.log(data.data);
                             this.goods_list = data.data.results;
                             page_number = Math.ceil(data.data.count/5);
-                            var page_range = [...new Array(page_number).keys()];
+                            {#var page_range = [...new Array(page_number).keys()];#}
+                            var page_range = Array.from({length:page_number},(item, index)=> index+1);
                             this.page_range = page_range
                         },
                         function (error) {
@@ -95,7 +96,8 @@
                                 console.log(data.data);
                                 this.goods_list = data.data.results;
                                 page_number = Math.ceil(data.data.count/5);
-                                var page_range = [...new Array(page_number).keys()];
+                                {#var page_range = [...new Array(page_number).keys()];#}
+                                var page_range = Array.from({length:page_number},(item, index)=> index+1);
                                 this.page_range = page_range
                             },
                             function (error) {

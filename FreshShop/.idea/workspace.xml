@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2337dbf6-924a-4d7f-9e43-bc23d4a943a9" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/73f43293-e6e6-40a3-970c-4656f8881526.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/73f43293-e6e6-40a3-970c-4656f8881526.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FreshShop/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/FreshShop/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FreshShop/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/FreshShop/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StoreApp/templates/storeapp/ajax_list_goods.html" beforeDir="false" afterPath="$PROJECT_DIR$/StoreApp/templates/storeapp/ajax_list_goods.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/StoreApp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/StoreApp/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/StoreApp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/StoreApp/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,8 +19,10 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/FreshShop$str_list.coverage" NAME="str-list Coverage Results" MODIFIED="1564664127803" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/FreshShop$listdict.coverage" NAME="list转dict Coverage Results" MODIFIED="1563891954092" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/0708-duan-Django/0723/python" />
     <SUITE FILE_PATH="coverage/FreshShop$AliPay1.coverage" NAME="AliPay1 Coverage Results" MODIFIED="1564139432521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/StoreApp" />
+    <SUITE FILE_PATH="coverage/FreshShop$SendMail.coverage" NAME="SendMail Coverage Results" MODIFIED="1564648393270" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/FreshShop" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -54,34 +60,63 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FreshShop/urls.py">
+        <entry file="file://$PROJECT_DIR$/FreshShop/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="29" column="41" lean-forward="true" selection-start-line="29" selection-start-column="41" selection-end-line="29" selection-end-column="41" />
+            <state relative-caret-position="392">
+              <caret line="177" lean-forward="true" selection-start-line="177" selection-end-line="177" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FreshShop/celery.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
               <folding>
-                <element signature="e#633#665#0" expanded="true" />
+                <element signature="e#0#4#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/StoreApp/urls.py">
+        <entry file="file://$PROJECT_DIR$/CeleryTask/tasks.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="4" column="24" lean-forward="true" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
+            <state relative-caret-position="162">
+              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
               <folding>
-                <element signature="e#0#36#0" expanded="true" />
+                <element signature="e#0#38#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/StoreApp/templates/storeapp/ajax_list_goods.html">
+        <entry file="file://$PROJECT_DIR$/CeleryTask/models.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FreshShop/SendMail.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="48">
-              <caret line="67" column="12" lean-forward="true" selection-start-line="67" selection-start-column="12" selection-end-line="67" selection-end-column="12" />
+            <state relative-caret-position="243">
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
+              <folding>
+                <element signature="e#0#30#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="479">
+                <caret line="21" column="22" lean-forward="true" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -89,8 +124,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/StoreApp/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="52">
-              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+            <state relative-caret-position="426">
+              <caret line="329" lean-forward="true" selection-start-line="329" selection-end-line="329" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
                 <element signature="e#283#721#0" />
@@ -111,43 +146,12 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/StoreApp/templates/storeapp/login.html">
+        <entry file="file://$PROJECT_DIR$/StoreApp/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-911" />
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/StoreApp/serializers.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="14" selection-start-line="14" selection-end-line="14" />
+            <state relative-caret-position="345">
+              <caret line="32" column="23" lean-forward="true" selection-start-line="32" selection-start-column="23" selection-end-line="32" selection-end-column="23" />
               <folding>
-                <element signature="e#29#67#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="425">
-                <caret line="19" column="21" lean-forward="true" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="21" />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/StoreApp/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="57" lean-forward="true" selection-start-line="57" selection-end-line="57" />
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
+                <element signature="e#0#36#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -158,8 +162,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -243,20 +247,25 @@
         <option value="$PROJECT_DIR$/BuyerApp/views.py" />
         <option value="$PROJECT_DIR$/StoreApp/models.py" />
         <option value="$PROJECT_DIR$/FreshShop/urls.py" />
-        <option value="$PROJECT_DIR$/StoreApp/serializers.py" />
-        <option value="$PROJECT_DIR$/StoreApp/views.py" />
-        <option value="$PROJECT_DIR$/FreshShop/settings.py" />
-        <option value="$PROJECT_DIR$/StoreApp/urls.py" />
         <option value="$PROJECT_DIR$/StoreApp/templates/storeapp/ajax_list_goods.html" />
+        <option value="$PROJECT_DIR$/utils/rendererresponse.py" />
+        <option value="$PROJECT_DIR$/StoreApp/serializers.py" />
+        <option value="$PROJECT_DIR$/FreshShop/sendMail.py" />
+        <option value="$PROJECT_DIR$/FreshShop/SendMail.py" />
+        <option value="$PROJECT_DIR$/str-list.py" />
+        <option value="$PROJECT_DIR$/FreshShop/settings.py" />
+        <option value="$PROJECT_DIR$/FreshShop/celery.py" />
+        <option value="$PROJECT_DIR$/CeleryTask/task.py" />
+        <option value="$PROJECT_DIR$/StoreApp/views.py" />
+        <option value="$PROJECT_DIR$/StoreApp/urls.py" />
         <option value="$PROJECT_DIR$/../README.md" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="156" />
-    <option name="y" value="32" />
-    <option name="width" value="937" />
-    <option name="height" value="641" />
+    <option name="x" value="283" />
+    <option name="width" value="1110" />
+    <option name="height" value="616" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -264,7 +273,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -275,12 +283,18 @@
             <path>
               <item name="FreshShop" type="b2602c69:ProjectViewProjectNode" />
               <item name="FreshShop" type="462c0819:PsiDirectoryNode" />
+              <item name="CeleryTask" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FreshShop" type="b2602c69:ProjectViewProjectNode" />
               <item name="FreshShop" type="462c0819:PsiDirectoryNode" />
+              <item name="StoreApp" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -326,6 +340,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="SendMail" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="FreshShop" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/FreshShop" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/FreshShop/SendMail.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="list转dict" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="FreshShop" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -340,6 +376,28 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="D:/0708-duan-Django/0723/python/list转dict.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="str-list" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="FreshShop" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/str-list.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -374,6 +432,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.str-list" />
+        <item itemvalue="Python.SendMail" />
         <item itemvalue="Python.AliPay1" />
         <item itemvalue="Python.list转dict" />
       </list>
@@ -403,23 +463,24 @@
       <workItem from="1564361728416" duration="33851000" />
       <workItem from="1564411797361" duration="297000" />
       <workItem from="1564447730724" duration="32304000" />
-      <workItem from="1564534056956" duration="22683000" />
+      <workItem from="1564534056956" duration="29638000" />
+      <workItem from="1564620907203" duration="22877000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="256334000" />
+    <option name="totallyTimeSpent" value="286166000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49727768" visible="true" weight="0.14372164" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49727768" visible="true" weight="0.15582451" />
       <window_info id="Structure" order="1" sideWeight="0.5027223" side_tool="true" weight="0.31130064" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.30769232" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.5057283" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39116204" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -428,89 +489,20 @@
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Database Changes" order="10" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.75482625" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.57610476" />
       <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="13" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="SciView" order="3" />
-      <window_info anchor="right" id="Database" order="4" weight="0.2685325" />
+      <window_info anchor="right" id="Database" order="4" weight="0.4280532" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/static/buyerapp/images/page_1_0.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/buyerapp/images/pay_icons.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/buyerapp/images/page_1_7.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/buyerapp/images/page_1_0_UVepPAt.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://D:/hs/envs/DjangoPath/Lib/site-packages/django/db/models/fields/related.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="1095" column="8" selection-start-line="1095" selection-start-column="8" selection-end-line="1095" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/buyerapp/images/page_1_2.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$USER_HOME$/.PyCharm2018.3/system/python_stubs/-1614873423/builtins.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="287" column="4" selection-start-line="287" selection-start-column="4" selection-end-line="287" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://73f43293-e6e6-40a3-970c-4656f8881526/schema/main/table/StoreApp_store">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/StoreApp/templates/storeapp/add_goods.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://73f43293-e6e6-40a3-970c-4656f8881526/schema/main/table/StoreApp_seller">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://73f43293-e6e6-40a3-970c-4656f8881526/schema/main/table/StoreApp_storetype">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://73f43293-e6e6-40a3-970c-4656f8881526/schema/main/table/StoreApp_goodsimg">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/StoreApp/templates/storeapp/update_goods.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-486" />
-      </provider>
-    </entry>
     <entry file="das://73f43293-e6e6-40a3-970c-4656f8881526/schema/main/table/BuyerApp_buyer">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -637,17 +629,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BuyerApp/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
-          <folding>
-            <element signature="e#439#774#0" />
-            <element signature="e#808#1391#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BuyerApp/templates/buyerapp/goods_cart.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="372">
@@ -669,16 +650,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1701">
           <caret line="63" lean-forward="true" selection-start-line="63" selection-end-line="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BuyerApp/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="242" column="51" selection-start-line="242" selection-start-column="51" selection-end-line="242" selection-end-column="51" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -713,10 +684,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FreshShop/settings.py">
+    <entry file="file://D:/hs/envs/DjangoPath/Lib/site-packages/django/http/response.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="145" lean-forward="true" selection-start-line="145" selection-end-line="145" />
+        <state relative-caret-position="195">
+          <caret line="471" column="6" selection-start-line="471" selection-start-column="6" selection-end-line="471" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StoreApp/templates/storeapp/register.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StoreApp/templates/storeapp/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-911" />
+      </provider>
+    </entry>
+    <entry file="das://73f43293-e6e6-40a3-970c-4656f8881526/schema/main/table/StoreApp_goods">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BuyerApp/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#367#804#0" />
+            <element signature="e#928#1354#0" />
+            <element signature="e#1380#2072#0" />
+            <element signature="e#2118#2680#0" />
+            <element signature="e#2730#3023#0" />
+            <element signature="e#3078#3314#0" />
+            <element signature="e#3383#5470#0" />
+            <element signature="e#5529#6360#0" />
+            <element signature="e#6588#8164#0" />
+            <element signature="e#8199#8410#0" />
+            <element signature="e#8449#11526#0" />
+            <element signature="e#11565#13227#0" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -730,59 +738,144 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://73f43293-e6e6-40a3-970c-4656f8881526/schema/main/table/StoreApp_goods">
+    <entry file="file://$PROJECT_DIR$/BuyerApp/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="79">
+          <caret line="52" column="4" lean-forward="true" selection-start-line="52" selection-start-column="4" selection-end-line="52" selection-end-column="4" />
+          <folding>
+            <element signature="e#439#774#0" />
+            <element signature="e#808#1391#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FreshShop/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="410">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/hs/envs/DjangoPath/Lib/site-packages/rest_framework/utils/json.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+          <folding>
+            <element signature="e#295#311#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/hs/envs/DjangoPath/Lib/site-packages/rest_framework/renderers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="565">
+          <caret line="63" lean-forward="true" selection-start-line="63" selection-end-line="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StoreApp/serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+          <folding>
+            <element signature="e#29#67#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/rendererresponse.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/hs/envs/DjangoPath/Lib/smtplib.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="781" lean-forward="true" selection-start-line="781" selection-end-line="781" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StoreApp/templates/storeapp/ajax_list_goods.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="63" lean-forward="true" selection-start-line="63" selection-end-line="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FreshShop/celery.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <element signature="e#0#4#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://73f43293-e6e6-40a3-970c-4656f8881526/schema/main/table/djcelery_workerstate">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/StoreApp/templates/storeapp/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-911" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/StoreApp/templates/storeapp/ajax_list_goods.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="67" column="12" lean-forward="true" selection-start-line="67" selection-start-column="12" selection-end-line="67" selection-end-column="12" />
+    <entry file="das://73f43293-e6e6-40a3-970c-4656f8881526/schema/main/table/celery_tasksetmeta">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/hs/envs/DjangoPath/Lib/site-packages/django/http/response.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="471" column="6" selection-start-line="471" selection-start-column="6" selection-end-line="471" selection-end-column="6" />
+    <entry file="das://73f43293-e6e6-40a3-970c-4656f8881526/schema/main/table/celery_taskmeta">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FreshShop/urls.py">
+    <entry file="file://$PROJECT_DIR$/str-list.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="29" column="41" lean-forward="true" selection-start-line="29" selection-start-column="41" selection-end-line="29" selection-end-column="41" />
+        <state relative-caret-position="81">
+          <caret line="3" column="3" selection-start-line="3" selection-start-column="3" selection-end-line="3" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CeleryTask/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FreshShop/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="392">
+          <caret line="177" lean-forward="true" selection-start-line="177" selection-end-line="177" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CeleryTask/tasks.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
           <folding>
-            <element signature="e#633#665#0" expanded="true" />
+            <element signature="e#0#38#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/StoreApp/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="4" column="24" lean-forward="true" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
+        <state relative-caret-position="345">
+          <caret line="32" column="23" lean-forward="true" selection-start-line="32" selection-start-column="23" selection-end-line="32" selection-end-column="23" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/StoreApp/templates/storeapp/register.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/StoreApp/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+        <state relative-caret-position="426">
+          <caret line="329" lean-forward="true" selection-start-line="329" selection-end-line="329" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
             <element signature="e#283#721#0" />
@@ -801,12 +894,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/StoreApp/serializers.py">
+    <entry file="file://$PROJECT_DIR$/CeleryTask/models.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FreshShop/SendMail.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        <state relative-caret-position="243">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
           <folding>
-            <element signature="e#29#67#0" expanded="true" />
+            <element signature="e#0#30#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -814,8 +910,8 @@
     <entry file="file://$PROJECT_DIR$/../README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="425">
-            <caret line="19" column="21" lean-forward="true" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="21" />
+          <first_editor relative-caret-position="479">
+            <caret line="21" column="22" lean-forward="true" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
           </first_editor>
           <second_editor />
         </state>

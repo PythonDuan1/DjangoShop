@@ -30,4 +30,6 @@ urlpatterns = [
 
 urlpatterns += [
     path('agl/',ajax_goods_list),
+    path('get_add/',get_add),
+
 ]
