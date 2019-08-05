@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    # 'django.middleware.cache.UpdateCacheMiddleware', 全栈粒度缓存
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -54,6 +55,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'FreshShop.middleware.MiddlewareTest',
+    # 'django.middleware.cache.FetchFromCacheMiddleware',全栈粒度缓存
+
+    # 'FreshShop.middleware.MiddlewareTest2',
 ]
 
 ROOT_URLCONF = 'FreshShop.urls'
@@ -110,15 +115,15 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-hans'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'#指定时区
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False  #为True,默认使用utc 0 时区
 
 
 # Static files (CSS, JavaScript, Images)
@@ -176,12 +181,57 @@ CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler' #celery处理器
 from celery.schedules import crontab
 from celery.schedules import timedelta
 
-CELERY_SCHEDULE = { #定时器策略
+CELERYBEAT_SCHEDULE = { #定时器策略
     #定时任务一： 每隔30s运行一次
     u'测试定时器1':{
-        "task":"celeryTask.tasks.taskExample",
-        "schedule":timedelta(seconds=30),
+        "task":"CeleryTask.tasks.taskExample",
+        "schedule":timedelta(seconds=5),
+        "args":(),
+    },
+    u'小段为您服务':{
+        "task":"CeleryTask.tasks.DingTalk",
+        "schedule":timedelta(seconds=3),
         "args":(),
     },
 }
+
+#cache 配置
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',#默认使用本地缓存
+#     }
+# }
+
+
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',#声明使用Memcache缓存
+#         'LOCATION':[
+#             '127.0.0.1:11211'
+#         ] #memcache地址
+#     }
+# }
+
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django_redis.cache.RedisCache',#声明使用RedisCache缓存
+#         'LOCATION':[
+#             'redis://127.0.0.1:6379/1'
+#         ], #redis数据库地址
+#         'OPTIONS':{
+#             'CLIENT_CLASS':'django_redis.client.DefaultClient'
+#         }
+#     }
+# }
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',#使用数据库缓存
+        'LOCATION': 'cache_table' #存放缓存的表
+    }
+}
+
+# 全栈粒度缓存
+# CACHE_MIDDLEWARE_KEY_PREFIX = ''
+# CACHE_MIDDLEWARE_SECONDS = 600
 

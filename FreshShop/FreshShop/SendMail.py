@@ -1,11 +1,11 @@
 import smtplib #登陆邮件服务器，进行邮件发送
 from email.mime.text import MIMEText #负责构建邮件格式
 
-subject = "小段的学习邮件"
+subject = "学习邮件"
 content = "好好学习，天天向上"
 sender = 'ws13097652830@163.com'
-recver = """meng13750446989@163.com,
-1147994001@qq.com"""
+recver = """544982866@qq.com,
+1246579964@qq.com"""
 
 
 password = 'duan123'

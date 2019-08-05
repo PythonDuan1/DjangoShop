@@ -27,9 +27,11 @@ urlpatterns = [
     re_path(r'set_goods/(?P<state>\w+)/',set_goods),
 
 ]
+from django.views.decorators.cache import cache_page
 
 urlpatterns += [
     path('agl/',ajax_goods_list),
     path('get_add/',get_add),
-
+    # path('swv/',cache_page(15*60)(smail_White_views)), #对当前路由进行缓存
+    path('swv/',smail_White_views), #底层缓存接口缓存
 ]

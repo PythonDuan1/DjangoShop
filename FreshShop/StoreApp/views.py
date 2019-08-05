@@ -3,6 +3,7 @@ import hashlib
 from django.shortcuts import render
 from django.core.paginator import Paginator  #导入分页模块
 from django.shortcuts import HttpResponseRedirect
+from django.http import HttpResponse
 
 from StoreApp.models import *
 from BuyerApp.models import *
@@ -338,3 +339,45 @@ from django.http import JsonResponse
 def get_add(request):
     add.delay(2,3)
     return JsonResponse({"status":200})
+
+
+# def smail_White_views(request):
+#     # print("我是小白视图")
+#     # raise TypeError("就要犯错")
+#     # return  HttpResponse("小白视图")
+#
+#     def hello():
+#         return HttpResponse("hello world")
+#     rep = HttpResponse("I am rep")
+#     rep.render = hello
+#     return rep
+
+
+from django.views.decorators.cache import cache_page
+
+# @cache_page(60*15) #对当前视图进行缓存，缓存寿命是15分钟
+# def smail_White_views(request):
+#     rep = HttpResponse("I am rep")
+#     # rep.render = lambda: HttpResponse("hello world")
+#     return rep
+
+
+#路由粒度缓存
+# def smail_White_views(request):
+#     rep = HttpResponse("I am rep")
+#     return rep
+
+#底层接口缓存
+from django.core.cache import cache
+def smail_White_views(request):
+    store_data = cache.get('store_data') #如果没有，返回None
+    if store_data:
+        store_data = store_data
+    else:
+        data = Store.objects.all()
+        cache.set("store_data",data,30) #设置缓存，可以修改已经存在的缓存
+        # cache.add("store_data",data,30) #add只会添加一个缓存，不会修改已经存在的缓存
+        store_data = data
+    return render(request,"storeapp/index.html",locals())
+
+
